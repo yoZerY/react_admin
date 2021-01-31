@@ -11,6 +11,8 @@
     "@testing-library/user-event": "^12.1.10",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
+    "antd": "^4.11.2",
+    "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.0",
     "babel-loader": "8.1.0",
@@ -41,6 +43,7 @@
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
     "mini-css-extract-plugin": "0.11.3",
+    "normalize.css": "^8.0.1",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.2.1",
@@ -54,6 +57,7 @@
     "react-dev-utils": "^11.0.1",
     "react-dom": "^17.0.1",
     "react-refresh": "^0.8.3",
+    "react-router-dom": "^5.2.0",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
     "sass-loader": "8.0.2",
@@ -147,5 +151,10 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.13.3",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2"
   }
 }
