@@ -1,8 +1,8 @@
-.login {
+.register {
   height: 100%;
   background-color: #f0f0f0;
   position: relative;
-  .login-form {
+  .register-form {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -10,7 +10,7 @@
     width: 450px;
     border-radius: 6px;
   }
-  .go-register {
+  .go-login {
     text-align: right;
   }
 }

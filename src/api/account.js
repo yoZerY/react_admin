@@ -12,7 +12,16 @@ export function reqLogin(data) {
 //获取验证码
 export function reqGetCode(data) {
   return service.request({
-    url: "/login/",
+    url: "/getSms/",
+    method: "post",
+    data,
+  });
+}
+
+//注册
+export function reqRegister(data) {
+  return service.request({
+    url: "/register/",
     method: "post",
     data,
   });
