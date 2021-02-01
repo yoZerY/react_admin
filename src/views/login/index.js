@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link } from 'react-router-dom'
 import CryptoJs from 'crypto-js'
-import { setToken } from '../../utils/utils.js'
+import { setToken, setAdminName } from '../../utils/cookies.js'
 import "./index.scss";
 import { Form, Input, Button, Row, Col, notification, message } from "antd";
 import { reqLogin, reqGetCode } from "../../api/account";
@@ -32,7 +32,9 @@ export default function Login(props) {
           clearInterval(timer.current)
           setLoginBtnLoading(false)
           const token = res.data.data.token
+          const username = res.data.data.username
           setToken(token)
+          setAdminName(username)
           message.success(res.data.message)
           props.history.push('/')
         } else {
