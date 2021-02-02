@@ -1,5 +1,5 @@
 import Axios from "axios";
-
+import { getToken, getAdminName } from './cookies'
 const service = Axios.create({
   baseURL: process.env.REACT_APP_API,
   timeout: 5000,
@@ -8,6 +8,8 @@ const service = Axios.create({
 // 添加请求拦截器
 service.interceptors.request.use(
   function (config) {
+    config.headers["Token"] = getToken()
+    config.headers["Username"] = getAdminName()
     // 在发送请求之前做些什么
     return config;
   },

@@ -16,3 +16,8 @@ export function setAdminName(userName) {
 export function getToken() {
     return Cookies.load(ADMIN_TOKEN)
 }
+
+//取name
+export function getAdminName() {
+    return Cookies.load(ADMIN_USER_NAME)
+}
