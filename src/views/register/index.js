@@ -98,8 +98,6 @@ export default function Register() {
                             },
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
-                                    console.log('getFieldValue', getFieldValue('password'))
-                                    console.log('value', value)
                                     if (!value || getFieldValue('password') === value) {
                                         return Promise.resolve()
                                     } else {

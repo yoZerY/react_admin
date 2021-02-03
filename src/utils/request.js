@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { message } from 'antd'
 import { getToken, getAdminName } from './cookies'
 const service = Axios.create({
   baseURL: process.env.REACT_APP_API,
@@ -23,7 +24,13 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   function (response) {
     // 对响应数据做点什么
-    return response;
+    const data = response.data
+    if (data.resCode === 0) {
+      return response;
+    } else {
+      message.warning(data.message)
+      return Promise.reject(response);
+    }
   },
   function (error) {
     // 对响应错误做点什么
