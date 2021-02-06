@@ -13,9 +13,10 @@ export default function DepartmentList() {
     const [tableData, setTableData] = useState([])
     const [username, setusername] = useState('')
     const [pageNumber, setPageNumber] = useState(1)
-    const [pageSize, setPageSize] = useState(10)
+    const [pageSize, setPageSize] = useState(5)
     const [selectedArr, setSelectedArr] = useState([])
     const [rowData, setRowData] = useState({})
+    const [count, setCount] = useState(0)
     const columns = [
         { title: '部门名称', dataIndex: 'name', key: 'name' },
         {
@@ -66,6 +67,7 @@ export default function DepartmentList() {
             pageSize: pageSize
         }
         reqDepartmentList(data).then(res => {
+            setCount(res.data.data.total)
             setTableData(res.data.data.data)
             setTableLoading(false)
         })
@@ -121,6 +123,17 @@ export default function DepartmentList() {
     const addDepartment = () => {
         addModalRef.current.changeVisible()
     }
+    const changePageSize = (current, pageSize) => {
+        console.log('pageSize', pageSize)
+        setPageSize(pageSize)
+        setPageNumber(1)
+        queryTableData()
+    }
+    const changePage = (current) => {
+        console.log('current', current)
+        setPageNumber(current)
+        queryTableData()
+    }
     return (
         <div>
             <div>
@@ -147,11 +160,28 @@ export default function DepartmentList() {
                         columns={columns}
                         dataSource={tableData}
                         rowSelection={{ ...rowSelection, columnWidth: '60px' }}
+                        pagination={{
+                            showSizeChanger: true,
+                            showQuickJumper: true,
+                            pageSize: pageSize,
+                            current: pageNumber,
+                            total: count,
+                            showTotal: () => `共${count}条`,
+                            onShowSizeChange: (current, pageSize) => changePageSize(current, pageSize),
+                            onChange: (current) => changePage(current)
+                        }}
                     ></Table>
                 </div>
             </div>
-            <AddDepartmentModal queryTableData={queryTableData} addModalRef={addModalRef}></AddDepartmentModal>
-            <EditDepartmentModal rowData={rowData} queryTableData={queryTableData} editModalRef={editModalRef}></EditDepartmentModal>
+            <AddDepartmentModal
+                queryTableData={queryTableData}
+                addModalRef={addModalRef}>
+            </AddDepartmentModal>
+            <EditDepartmentModal
+                rowData={rowData}
+                queryTableData={queryTableData}
+                editModalRef={editModalRef}>
+            </EditDepartmentModal>
         </div>
     )
 }
